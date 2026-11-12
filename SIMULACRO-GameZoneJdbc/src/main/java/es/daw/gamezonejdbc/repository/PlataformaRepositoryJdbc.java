@@ -92,4 +92,36 @@ public class PlataformaRepositoryJdbc implements PlataformaRepository {
     private Plataforma mapRow(ResultSet rs) throws SQLException {
         return new Plataforma(rs.getInt("codigo"), rs.getString("nombre"));
     }
+
+    @Override
+    public boolean existsByNombreIgnoreCaseAndCodigoNot(String nombre, Integer codigo) {
+        String sql = "SELECT 1 FROM Plataforma WHERE LOWER(nombre) = LOWER(?) AND codigo <> ?";
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setInt(2, codigo);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next(); // TRUE si encuentra el fabricante con ese nombre...
+            }
+        } catch (SQLException e) {
+            throw new AccesoDatosException("Error al comprobar el nombre de la plataforma: " + nombre, e);
+        }
+
+    }
+
+    @Override
+    public boolean existsByNombreIgnoreCase(String nombre) {
+
+        String sql = "SELECT 1 FROM plataforma WHERE LOWER(nombre) = LOWER(?)";
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next(); // TRUE si encuentra el fabricante con ese nombre...
+            }
+        } catch (SQLException e) {
+            throw new AccesoDatosException("Error al comprobar el nombre de la plataforma: " + nombre, e);
+        }
+
+    }
 }

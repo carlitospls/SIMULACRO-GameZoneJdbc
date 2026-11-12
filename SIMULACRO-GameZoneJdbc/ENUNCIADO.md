@@ -35,11 +35,11 @@ Años de los juegos actuales:
 
 Comprobaciones:
 
-- [ ] El listado muestra la columna Año con estos valores.
-- [ ] Alta con el año vacío → "El año de lanzamiento es obligatorio", sin perder lo demás.
-- [ ] Alta con 1969 y con 2027 → el mensaje del rango.
-- [ ] Alta válida (año 2020) → aparece en el listado con su año.
-- [ ] Editar _Minecraft_ → el año sale relleno (2011). Cambiarlo a 2012 → el listado muestra 2012.
+- [x ] El listado muestra la columna Año con estos valores.
+- [ x] Alta con el año vacío → "El año de lanzamiento es obligatorio", sin perder lo demás.
+- [ x] Alta con 1969 y con 2027 → el mensaje del rango.
+- [ x] Alta válida (año 2020) → aparece en el listado con su año.
+- [x ] Editar _Minecraft_ → el año sale relleno (2011). Cambiarlo a 2012 → el listado muestra 2012.
 
 ---
 
@@ -56,7 +56,7 @@ Comprobaciones:
 
 - [ ] Alta "astro bot" en PlayStation 5 → mensaje; precio y plataforma siguen rellenos.
 - [ ] Alta "Astro Bot" en PC → se crea (otra plataforma).
-- [ ] Editar _Halo Infinite_ cambiando solo el precio → se guarda.
+- [x] Editar _Halo Infinite_ cambiando solo el precio → se guarda.
 - [ ] Editar _Halo Infinite_ poniéndole "Forza Horizon 5" → mensaje.
 - [ ] Editar _EA Sports FC 26_ de Switch cambiando solo el precio → se guarda (el de PS5 es otra plataforma).
 
