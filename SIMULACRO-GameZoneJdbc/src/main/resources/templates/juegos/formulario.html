@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Juego')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="contenedor estrecho">
+    <h1 th:text="${juegoForm.codigo == null} ? 'Nuevo juego' : ('Editar juego ' + ${juegoForm.codigo})">
+        Juego
+    </h1>
+
+    <form th:action="@{/juegos/guardar}" th:object="${juegoForm}" method="post" class="formulario" novalidate>
+
+        <input type="hidden" th:field="*{codigo}">
+
+        <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" th:field="*{nombre}" th:classappend="${#fields.hasErrors('nombre')} ? 'invalido'">
+            <div class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error</div>
+        </div>
+
+        <div class="campo">
+            <label for="precio">Precio (€)</label>
+            <input type="number" step="0.01" th:field="*{precio}" th:classappend="${#fields.hasErrors('precio')} ? 'invalido'">
+            <div class="error" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error</div>
+        </div>
+
+        <div class="campo">
+            <label for="codigoPlataforma">Plataforma</label>
+            <select th:field="*{codigoPlataforma}" th:classappend="${#fields.hasErrors('codigoPlataforma')} ? 'invalido'">
+                <option value="">-- Selecciona una plataforma --</option>
+                <option th:each="pf : ${plataformas}" th:value="${pf.codigo}" th:text="${pf.nombre}">Plataforma</option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('codigoPlataforma')}" th:errors="*{codigoPlataforma}">Error</div>
+        </div>
+
+        <div class="campo">
+            <label for="año">Año</label>
+            <input type="number" step="1" th:field="*{año}" th:classappend="${#fields.hasErrors('año')} ? 'invalido'">
+            <div class="error" th:if="${#fields.hasErrors('año')}" th:errors="*{año}">Error</div>
+        </div>
+
+        <div class="acciones">
+            <button type="submit" class="boton azul">Guardar</button>
+            <a th:href="@{/juegos}" class="boton gris">Cancelar</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
