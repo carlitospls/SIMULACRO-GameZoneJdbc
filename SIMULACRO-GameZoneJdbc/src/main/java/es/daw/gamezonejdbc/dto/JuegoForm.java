@@ -38,6 +38,7 @@ public class JuegoForm {
         form.setCodigo(p.getCodigo());
         form.setNombre(p.getNombre());
         form.setPrecio(p.getPrecio());
+        form.setAño(p.getAño());
         form.setCodigoPlataforma(p.getPlataforma().getCodigo());
         return form;
     }
